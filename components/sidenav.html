@@ -1,19 +1,94 @@
-<button class="sidenav-toggle">☰ Menu</button>
+<!-- Toggle button OUTSIDE the sidenav -->
+<button class="sidenav-toggle" aria-label="Toggle navigation">☰</button>
+
 <nav id="sideNav" class="sidenav">
-  <ul class="sidenav-list">
-    <!-- Root pages -->
+
+
+  <ul>
+    <!-- Home -->
     <li><a href="index.html">Home</a></li>
+
+    <!-- Map -->
     <li><a href="map.html">Map</a></li>
 
-    <!-- Countries dropdown -->
+    <!-- Countries Section -->
     <li class="countries-item">
-      <button class="expand-btn">Countries ▾</button>
+      <button class="expand-btn" aria-expanded="false">Countries</button>
+
+      <!-- Search -->
+      <input
+        type="text"
+        id="countrySearch"
+        placeholder="Search countries..."
+        aria-label="Search countries"
+        style="margin: 0.5rem 1rem; width: calc(100% - 2rem); padding: 0.4rem;"
+      />
+
+      <!-- Continent List -->
       <ul class="countries-list">
-        <!-- Link for root pages: countries/uk.html -->
-        <!-- script.js will adjust this link automatically for subfolder pages -->
-        <li><a href="countries/uk.html">United Kingdom</a></li>
-        <!-- Add more countries here -->
+        <!-- Africa -->
+        <li class="continent-item">
+          <button class="expand-btn" aria-expanded="false">Africa</button>
+          <ul class="continent-list">
+            <li><a href="countries/egypt.html">Egypt</a></li>
+            <li><a href="countries/kenya.html">Kenya</a></li>
+            <li><a href="countries/nigeria.html">Nigeria</a></li>
+          </ul>
+        </li>
+
+        <!-- Asia -->
+        <li class="continent-item">
+          <button class="expand-btn" aria-expanded="false">Asia</button>
+          <ul class="continent-list">
+            <li><a href="countries/china.html">China</a></li>
+            <li><a href="countries/japan.html">Japan</a></li>
+            <li><a href="countries/india.html">India</a></li>
+          </ul>
+        </li>
+
+        <!-- Europe -->
+        <li class="continent-item">
+          <button class="expand-btn" aria-expanded="false">Europe</button>
+          <ul class="continent-list">
+            <li><a href="countries/france.html">France</a></li>
+            <li><a href="countries/germany.html">Germany</a></li>
+            <li><a href="countries/uk.html">United Kingdom</a></li>
+          </ul>
+        </li>
+
+        <!-- North America -->
+        <li class="continent-item">
+          <button class="expand-btn" aria-expanded="false">North America</button>
+          <ul class="continent-list">
+            <li><a href="countries/canada.html">Canada</a></li>
+            <li><a href="countries/usa.html">United States</a></li>
+            <li><a href="countries/mexico.html">Mexico</a></li>
+          </ul>
+        </li>
+
+        <!-- South America -->
+        <li class="continent-item">
+          <button class="expand-btn" aria-expanded="false">South America</button>
+          <ul class="continent-list">
+            <li><a href="countries/brazil.html">Brazil</a></li>
+            <li><a href="countries/argentina.html">Argentina</a></li>
+            <li><a href="countries/chile.html">Chile</a></li>
+          </ul>
+        </li>
+
+        <!-- Oceania -->
+        <li class="continent-item">
+          <button class="expand-btn" aria-expanded="false">Oceania</button>
+          <ul class="continent-list">
+            <li><a href="countries/australia.html">Australia</a></li>
+            <li><a href="countries/new-zealand.html">New Zealand</a></li>
+            <li><a href="countries/fiji.html">Fiji</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+
+    <!-- About -->
+    <li><a href="about.html">About</a></li>
   </ul>
 </nav>
