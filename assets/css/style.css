@@ -150,10 +150,27 @@ footer {
   margin: 0.5rem 0;
 }
 
-.sidenav a {
+/* Normalize button typography to match links */
+.expand-btn {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: var(--text-light);
+  text-align: left;
+  width: 100%;
+}
+
+.sidenav a,
+.expand-btn {
   color: var(--text-light);
   padding: 0.5rem 1rem;
   display: block;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .sidenav a:hover,
@@ -165,12 +182,21 @@ footer {
 .expand-btn {
   background: none;
   border: none;
-  color: var(--text-light);
   cursor: pointer;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
   text-align: left;
   width: 100%;
+  position: relative;
+}
+
+/* Dropdown arrows */
+.arrow {
+  float: right;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.expanded > .expand-btn .arrow {
+  transform: rotate(180deg);
 }
 
 /* Accessibility focus */
@@ -194,10 +220,42 @@ footer {
   display: block;
 }
 
+/* Indentation */
 .continent-item > .expand-btn {
   padding-left: 2rem;
 }
 
 .continent-list li a {
   padding-left: 3rem;
+}
+
+/* ===========================
+   Search Bar
+=========================== */
+.search-wrapper {
+  position: relative;
+  margin: 0.5rem 1rem;
+    overflow: hidden; /* prevents spillover */
+}
+
+#countrySearch {
+  width: 100%;
+  padding: 0.4rem 2rem 0.4rem 0.6rem;
+  border-radius: 4px;
+  border: none;
+    box-sizing: border-box; /* ensures padding stays inside width */
+}
+
+
+#clearSearch {
+  position: absolute;
+  right: 0.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
 }

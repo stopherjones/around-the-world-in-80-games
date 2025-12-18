@@ -48,15 +48,16 @@ function setupToggle(sidenav, toggle) {
 =========================== */
 function setupExpandDelegation(sidenav) {
   sidenav.addEventListener("click", (e) => {
-    if (e.target.classList.contains("expand-btn")) {
-      const item = e.target.parentElement;
-      item.classList.toggle("expanded");
+    const btn = e.target.closest(".expand-btn");
+    if (!btn) return;
 
-      e.target.setAttribute(
-        "aria-expanded",
-        item.classList.contains("expanded")
-      );
-    }
+    const item = btn.parentElement;
+    item.classList.toggle("expanded");
+
+    btn.setAttribute(
+      "aria-expanded",
+      item.classList.contains("expanded")
+    );
   });
 }
 
@@ -66,7 +67,6 @@ function setupExpandDelegation(sidenav) {
 function adjustLinks(sidenav, pathPrefix, isSubfolder) {
   if (!isSubfolder) return;
 
-  // Adjust root-level links
   sidenav.querySelectorAll("ul > li > a").forEach(link => {
     const href = link.getAttribute("href");
     if (!href.includes("countries/")) {
@@ -74,7 +74,6 @@ function adjustLinks(sidenav, pathPrefix, isSubfolder) {
     }
   });
 
-  // Adjust country links
   sidenav.querySelectorAll(".countries-list a").forEach(link => {
     const href = link.getAttribute("href");
     if (href.startsWith("countries/")) {
@@ -84,15 +83,15 @@ function adjustLinks(sidenav, pathPrefix, isSubfolder) {
 }
 
 /* ===========================
-   Country Search (Fixed)
+   Search + Clear Button + No Results
 =========================== */
 function setupSearch(sidenav) {
   const searchInput = sidenav.querySelector("#countrySearch");
-  if (!searchInput) return;
+  const clearBtn = sidenav.querySelector("#clearSearch");
+  if (!searchInput || !clearBtn) return;
 
   const countriesRoot = sidenav.querySelector(".countries-item");
 
-  // Create a "no results" message (hidden by default)
   let noResults = sidenav.querySelector(".no-results");
   if (!noResults) {
     noResults = document.createElement("div");
@@ -104,11 +103,12 @@ function setupSearch(sidenav) {
     sidenav.querySelector(".countries-list").prepend(noResults);
   }
 
-  searchInput.addEventListener("input", (e) => {
-    const filter = e.target.value.toLowerCase();
+  searchInput.addEventListener("input", () => {
+    const filter = searchInput.value.toLowerCase();
     let anyMatchOverall = false;
 
-    // Expand top-level Countries section when searching
+    clearBtn.style.display = filter ? "block" : "none";
+
     if (filter) {
       countriesRoot.classList.add("expanded");
     } else {
@@ -118,9 +118,7 @@ function setupSearch(sidenav) {
     const continentItems = sidenav.querySelectorAll(".continent-item");
 
     continentItems.forEach(continent => {
-      const countriesItem = continent.querySelector(".countries-item");
       const countryLis = continent.querySelectorAll(".continent-list li");
-
       let hasMatch = false;
 
       countryLis.forEach(li => {
@@ -130,33 +128,22 @@ function setupSearch(sidenav) {
       });
 
       if (filter) {
-        // Expand continent only if it has matches
         continent.classList.toggle("expanded", hasMatch);
-
-        // Hide continent entirely if no matches
         continent.style.display = hasMatch ? "" : "none";
-
-        // Expand nested countries list if present
-        if (countriesItem) {
-          countriesItem.classList.toggle("expanded", hasMatch);
-        }
-
         if (hasMatch) anyMatchOverall = true;
-
       } else {
-        // Reset everything when search is cleared
         continent.classList.remove("expanded");
         continent.style.display = "";
-        if (countriesItem) countriesItem.classList.remove("expanded");
         countryLis.forEach(li => (li.style.display = ""));
       }
     });
 
-    // Show/hide "no results" message
-    if (filter && !anyMatchOverall) {
-      noResults.style.display = "block";
-    } else {
-      noResults.style.display = "none";
-    }
+    noResults.style.display = filter && !anyMatchOverall ? "block" : "none";
+  });
+
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    clearBtn.style.display = "none";
+    searchInput.dispatchEvent(new Event("input"));
   });
 }
