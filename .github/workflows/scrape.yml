@@ -1,9 +1,13 @@
 name: Scrape BGA Tournaments
 
+# ✅ Allow this workflow to push changes back to the repo
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: "0 * * * *"   # runs every hour
-  workflow_dispatch:       # allows manual runs
+  workflow_dispatch:       # allow manual runs
 
 jobs:
   scrape:
@@ -18,13 +22,17 @@ jobs:
         with:
           node-version: 18
 
+      # ✅ Install jsdom (fetch is built into Node 18)
       - name: Install dependencies
-        run: npm install jsdom node-fetch@2
+        run: npm install jsdom
 
       - name: Run scraper
         run: node scripts/scrape_tournaments.js
 
+      # ✅ Commit and push changes using the GitHub token
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
