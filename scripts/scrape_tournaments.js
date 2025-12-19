@@ -28,8 +28,8 @@ if (isCompleted) {
     ...doc.querySelectorAll(".tournaments-results-players__player")
   ];
 
-  // Extract top 5
-  const top5 = playerBlocks.slice(0, 5).map(block => {
+  // Extract top 4
+  const top5 = playerBlocks.slice(0, 4).map(block => {
     const nameEl = block.querySelector(".tournaments-results-players__name");
     const rankEl = block.querySelector(".tournaments-results-players__rank");
     const avatarEl = block.querySelector("img");
@@ -45,7 +45,7 @@ if (isCompleted) {
   return {
     id,
     status: "completed",
-    top5
+    top4
   };
 }
 

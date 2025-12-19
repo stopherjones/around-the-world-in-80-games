@@ -26,15 +26,26 @@ async function loadCountryTournaments() {
     div.className = "tournament-card";
 
     if (t.status === "completed") {
-      const standingsTable = t.standings
-        .map(row => `<tr>${row.map(col => `<td>${col}</td>`).join("")}</tr>`)
-        .join("");
+      // ✅ Render top 5 results
+const top5Table = t.top5
+  .map(player => `
+    <tr>
+      <td>${player.rank}</td>
+      <td>${player.name}</td>
+    </tr>
+  `)
+  .join("");
 
-      div.innerHTML = `
-        <h3>Tournament ${t.id} — Completed</h3>
-        <table class="standings-table">${standingsTable}</table>
-        <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
-      `;
+
+div.innerHTML = `
+  <h3>Tournament ${t.id} — Completed</h3>
+  <table class="standings-table">
+    <tr><th>Rank</th><th>Player</th></tr>
+    ${top5Table}
+  </table>
+  <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
+`;
+
     } else if (t.status === "ongoing") {
       div.innerHTML = `
         <h3>Tournament ${t.id} — Ongoing</h3>

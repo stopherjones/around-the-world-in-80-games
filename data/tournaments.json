@@ -2,6 +2,37 @@
   "354697": {
     "id": 354697,
     "status": "completed",
-    "top5": []
+    "top5": [
+      {
+        "rank": "1st",
+        "name": "TacCOIG",
+        "playerId": "86251669",
+        "avatar": "https://x.boardgamearena.net/data/avatar/0/86/86251/86251669_50.jpg?h=3fe2857ae7"
+      },
+      {
+        "rank": "2nd",
+        "name": "Cheery Dog",
+        "playerId": "84406072",
+        "avatar": "https://x.boardgamearena.net/data/avatar/defaults/default-2187_50.jpg"
+      },
+      {
+        "rank": "3rd",
+        "name": "Saugust2",
+        "playerId": "16548319",
+        "avatar": "https://x.boardgamearena.net/data/avatar/0/16/16548/16548319_50.jpg?h=ceb4dde65e"
+      },
+      {
+        "rank": "3rd",
+        "name": "andycupid",
+        "playerId": "84023624",
+        "avatar": "https://x.boardgamearena.net/data/avatar/0/84/84023/84023624_50.jpg?h=f809222941"
+      },
+      {
+        "rank": "5th",
+        "name": "Zozoken",
+        "playerId": "84308250",
+        "avatar": "https://x.boardgamearena.net/data/avatar/0/84/84308/84308250_50.jpg?h=9352194264"
+      }
+    ]
   }
 }
