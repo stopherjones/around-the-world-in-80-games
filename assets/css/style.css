@@ -152,6 +152,9 @@ footer {
   transition: transform 0.3s ease;
   z-index: 1000;
   box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
 }
 
 .sidenav.open {
