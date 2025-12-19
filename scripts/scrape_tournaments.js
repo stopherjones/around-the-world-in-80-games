@@ -23,22 +23,18 @@ async function scrapeTournament(id) {
 
 // ✅ Completed tournament
 if (isCompleted) {
-  // Find all player result blocks
   const playerBlocks = [
     ...doc.querySelectorAll(".tournaments-results-players__player")
   ];
 
-  // Extract top 4
+  // Change 5 → 4 if you want top 4
   const top5 = playerBlocks.slice(0, 4).map(block => {
     const nameEl = block.querySelector(".tournaments-results-players__name");
     const rankEl = block.querySelector(".tournaments-results-players__rank");
-    const avatarEl = block.querySelector("img");
 
     return {
       rank: rankEl ? rankEl.textContent.trim() : null,
-      name: nameEl ? nameEl.textContent.trim() : null,
-      playerId: nameEl ? nameEl.getAttribute("href").replace("/player?id=", "") : null,
-      avatar: avatarEl ? avatarEl.getAttribute("src") : null
+      name: nameEl ? nameEl.textContent.trim() : null
     };
   });
 
@@ -48,6 +44,7 @@ if (isCompleted) {
     top4
   };
 }
+
 
 
   // ✅ Ongoing tournament
