@@ -1,7 +1,24 @@
 {
   "354697": {
     "id": 354697,
-    "status": "error",
-    "error": "top4 is not defined"
+    "status": "completed",
+    "top4": [
+      {
+        "rank": "1st",
+        "name": "TacCOIG"
+      },
+      {
+        "rank": "2nd",
+        "name": "Cheery Dog"
+      },
+      {
+        "rank": "3rd",
+        "name": "Saugust2"
+      },
+      {
+        "rank": "3rd",
+        "name": "andycupid"
+      }
+    ]
   }
 }
