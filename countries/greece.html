@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweden · Around the World in 80 Games</title>
+  <title>Greece · Around the World in 80 Games</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body>
 
   <header>
-    <h1>Sweden</h1>
+    <h1>Greece</h1>
     <div class="country-nav">
-    <a href="denmark.html" class="prev">← Denmark</a>
-    <a href="norway.html" class="next">Norway →</a>
+    <a href="russia.html" class="prev">← Russia</a>
+    <a href="russia.html" class="next">Russia →</a>
     </div>
   </header>
 
@@ -22,17 +22,24 @@
     <section>
       <h2>Overview</h2>
       <div class="placeholder">
-        <p>Welcome to Sweden!</p>
-        <p>We take the short hop across the Øresund Bridge to celebrate ‘Fika’ - an integral part of Swedish culture aimed at giving yourself a moment to have a break and socialise - usually over a coffee and a delicious treat!</p>
-        <p>The custom of Fika can be enjoyed almost anywhere, thanks to Sweden’s generous right to roam public access and because the concept of Fika is ‘baked’ into many employment contracts ;-) </p>
-        <p>But don’t be fooled by the cosy exterior, this is a clever two-player card battle, that requires planning and timing in order to play the right cards into your own café, while manipulating those of your opponent, in order to secure maximum points and win the round! </p>
-        </div>
+      <p>Welcome to Greece, a land steeped in history, mythology, and breathtaking beauty, known as the cradle of Western civilization and the birthplace of democracy and the Olympic Games.</p>
+      <p>From the iconic whitewashed buildings of Santorini to the majestic ruins of the Acropolis in Athens, Greece has inspired art, philosophy, and culture for millennia - and, of course, our next two games:</p>
+      <p>Santorini is something of a modern classic - a 2-player abstract with a twist. Channel the powers of Gaea, Zeus or even Chaos to build and climb to the top of the city, while manoeuvring to block your opponent.</p>
+      <p>In Akropolis you’ll quarry for stone, while drafting and building housing, temples, markets, gardens and barracks, to grow your city and ensure it triumphs over your rivals.</p>
+           </div>
     </section>
 
 <section>
-  <h2>Fika results</h2>
+  <h2>Santorini results</h2>
   <div class="placeholder">
-    <div id="fika-tournaments"></div>
+    <div id="santorini-tournaments"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Akropolis results</h2>
+  <div class="placeholder">
+    <div id="akropolis-tournaments"></div>
   </div>
 </section>
 
@@ -57,7 +64,8 @@
 
   // ✅ Map tournament IDs to their section containers
   const TOURNAMENT_SECTIONS = {
-    368887: "fika-tournaments",
+    387302: "santorini-tournaments",
+    387304: "akropolis-tournaments",
   };
 
   async function loadCountryTournaments() {

@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweden · Around the World in 80 Games</title>
+  <title>Norway · Around the World in 80 Games</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body>
 
   <header>
-    <h1>Sweden</h1>
+    <h1>Norway</h1>
     <div class="country-nav">
-    <a href="denmark.html" class="prev">← Denmark</a>
-    <a href="norway.html" class="next">Norway →</a>
+    <a href="sweden.html" class="prev">← Sweden</a>
+    <a href="russia.html" class="next">Russia →</a>
     </div>
   </header>
 
@@ -22,17 +22,23 @@
     <section>
       <h2>Overview</h2>
       <div class="placeholder">
-        <p>Welcome to Sweden!</p>
-        <p>We take the short hop across the Øresund Bridge to celebrate ‘Fika’ - an integral part of Swedish culture aimed at giving yourself a moment to have a break and socialise - usually over a coffee and a delicious treat!</p>
-        <p>The custom of Fika can be enjoyed almost anywhere, thanks to Sweden’s generous right to roam public access and because the concept of Fika is ‘baked’ into many employment contracts ;-) </p>
-        <p>But don’t be fooled by the cosy exterior, this is a clever two-player card battle, that requires planning and timing in order to play the right cards into your own café, while manipulating those of your opponent, in order to secure maximum points and win the round! </p>
-        </div>
+      <p>Next up, we explore Scandinavia more broadly through two very different card games, as we go back in time to the Viking Era of 800 AD to 1050 AD - an age when Vikings explored, settled and raided across Northern Europe and even as far as Greenland, Canada and the Mediterranean. Often depicted as brutal invaders, Vikings were skilled craftspeople, often preferring to trade, albeit with a strong drive to fight for supremacy among tribes. </p> 
+      <p>First up is Herrlof, a trick-taking game where players compete to strengthen their tribe by secretly bidding how many tricks they will win and using special power cards to their best advantage. </p>
+      <p>Knarr is a straight engine-building points race as players recruit Viking warriors, using their abilities to cumulate resources and explore locations in the first to the finish.</p>
+      </div>
     </section>
 
 <section>
-  <h2>Fika results</h2>
+  <h2>Herrlof results</h2>
   <div class="placeholder">
-    <div id="fika-tournaments"></div>
+    <div id="herrlof-tournaments"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Knarr results</h2>
+  <div class="placeholder">
+    <div id="knarr-tournaments"></div>
   </div>
 </section>
 
@@ -57,7 +63,8 @@
 
   // ✅ Map tournament IDs to their section containers
   const TOURNAMENT_SECTIONS = {
-    368887: "fika-tournaments",
+    380123: "herrlof-tournaments",
+    374194: "knarr-tournaments",
   };
 
   async function loadCountryTournaments() {
