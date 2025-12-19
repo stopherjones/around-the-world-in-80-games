@@ -38,7 +38,7 @@ a:hover {
 header {
   background: var(--nav-bg);
   color: var(--text-light);
-  padding: 3rem 1.5rem;
+  padding: 2.5rem 1.5rem 0rem; /* 2.5rem top padding, 0rem bottom padding */
   text-align: center;
 }
 
@@ -53,11 +53,42 @@ header p {
   opacity: 0.9;
 }
 
+.country-nav {
+  display: flex;
+  justify-content: space-between;
+  max-width: 950px; /* or whatever matches your layout */
+  margin: 0 auto;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+
+.country-nav a {
+  color: inherit;   /* ← matches the header text colour */
+  text-decoration: none;
+}
+
+.country-nav a:hover {
+  text-decoration: underline;
+}
+
+.placeholder.country-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  background: #A06A4E; 
+  border: none;
+}
+
+
 /* ===========================
    Main Content
 =========================== */
 main {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }

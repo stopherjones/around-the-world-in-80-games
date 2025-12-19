@@ -4,40 +4,38 @@ const fs = require("fs");
 
 // ✅ Add all tournament IDs you want to track
 const TOURNAMENT_IDS = [
-  354697,
-  354698,
-  360285,
-  360291, 
-  368884,
-  368887,
-  374194,
-  374197,
-  378251,
-  380123,
-  387302,
-  387304,
-  404118,
-  404124,
-  404125,
-  404206,
-  410031,
-  420784,
-  420786,
-  420787,
-  420929,
-  427916,
-  427918,
-  427919,
-  439073,
-  439074,
-  461495,
-  461517,
-  488440,
-  488444,
-  488602,
-  499404,
-  499408,
-  499409,
+  354697,  // Mr Jack
+  354698,  // Next Station: London  
+  360285,  // Gift of Tulips 
+  360291,  // Thurn and Taxis 
+  368884,  // Copenhagen
+  368887,  // Fika
+  374194,  // Knarr
+  378251,  // Saint Petersburg
+  380123,  // Herrlof
+  387302,  // Akropolis
+  387304,  // Santorini
+  404118,  // Ponte del Diavolo
+  404125,  // Verona Twist
+  404206,  // Viticulture
+  410031,  // Ticket to Ride: Switzerland
+  420784,  // Oriflamme
+  420786,  // Carcassonne
+  420787,  // Fromage
+  420929,  // The Castles of Burgundy
+  427916,  // Finca
+  427918,  // Alhambra
+  427919,  // Azul: Summer Pavilion
+  439073,  // Marrakech
+  439074,  // Medina
+  461495,  // Targi
+  461517,  // Caravan
+  488440,  // Orapa Mine
+  488444,  // Rift Valley Reserve
+  488602,  // RallymanGT
+  499404,  // Sobek 
+  499408,  // Luxor
+  499409,  // Imhotep
   // Add more IDs here
 ];
 

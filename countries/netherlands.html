@@ -4,42 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>United Kingdom · Around the World in 80 Games</title>
+  <title>Netherlands · Around the World in 80 Games</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body>
 
-  <header>
-    <h1>United Kingdom</h1>
-    <div class="placeholder country-nav">
+<header>
+  <h1>Netherlands</h1>
+<div class="placeholder country-nav">
   <a href="uk.html" class="prev">← United Kingdom</a>
   <a href="germany.html" class="next">Germany →</a>
 </div>
-  </header>
+
+</header>
+
+
 
   <main>
     <section>
       <h2>Overview</h2>
       <div class="placeholder">
-        <p>Welcome to London!</p>
-        <p>We begin our journey around the world in the footsteps of Phileas Fogg, in London, a city with a rich board-gaming history, from one of the original versions of Monopoly, to more modern games like Scotland Yard and Get on Board. But for our first two games, we’re opening the boxes on a Turn-Based Arena favourite, Next Station: London, as well as something of a hidden deduction gem, Mr. Jack.</p>
-        <p>In Mr. Jack you’ll step into the shoes of either a cunning detective or the elusive Mr. Jack himself, racing against time in a game of cat and mouse through the streets of Victorian London.</p>
-        <p>Then, we’ll switch gears and head into the hustle and bustle of Next Station: London, a game that needs little introduction, where you’ll play the role of a transport planner, as you try to create the most efficient underground network across the city.</p>
-      </div>
+        <p>Welcome to the picturesque city of Amsterdam, the capital of the Netherlands.</p>
+        <p>Known for its winding canals, historic architecture, and artistic heritage, Amsterdam is a city that effortlessly blends old-world charm with modern innovation. The Netherlands is a country of windmills, tulip fields, and a rich maritime history that once made it a global superpower during the Dutch Golden Age.</p>
+        <p>Tulips became a symbol of the country after being introduced in the 16th century. During the Tulip Mania of the 1630s, tulip bulbs were so highly prized that they were worth more than gold, creating one of the first economic bubbles in history. </p>
+        <p>Our next game celebrates Amsterdam’s famous Tulip Festival - Gift of Tulips is a clever card game in which you’ll gather and share tulips, gifting bouquets to your fellow players and the festival overall in an attempt to create the most beautiful display.</p>
+        </div>
     </section>
 
 <section>
-  <h2>Mr Jack results</h2>
+  <h2>Gift of Tulips results</h2>
   <div class="placeholder">
-    <div id="mrjack-tournaments"></div>
-  </div>
-</section>
-
-<section>
-  <h2>Next Station: London results</h2>
-  <div class="placeholder">
-    <div id="nextstation-tournaments"></div>
+    <div id="gift-of-tulips-tournaments"></div>
   </div>
 </section>
 
@@ -64,8 +60,7 @@
 
   // ✅ Map tournament IDs to their section containers
   const TOURNAMENT_SECTIONS = {
-    354697: "mrjack-tournaments",
-    354698: "nextstation-tournaments"
+    360285: "gift-of-tulips-tournaments",
   };
 
   async function loadCountryTournaments() {
