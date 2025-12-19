@@ -153,7 +153,7 @@ function setupSearch(sidenav) {
 =========================== */
 
 async function loadTournaments() {
-  const res = await fetch("data/tournaments.json");
+  const res = await fetch("/around-the-world-in-80-games/data/tournaments.json");
   const data = await res.json();
 
   const container = document.getElementById("tournaments");
