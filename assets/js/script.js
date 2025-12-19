@@ -1,3 +1,8 @@
+// Detect whether we're running on GitHub Pages or locally
+const BASE = window.location.pathname.includes("around-the-world-in-80-games")
+  ? "/around-the-world-in-80-games"
+  : "";
+
 document.addEventListener("DOMContentLoaded", () => {
   const { pathPrefix, isSubfolder } = detectPath();
   loadSideNav(pathPrefix, isSubfolder);
@@ -18,7 +23,8 @@ function detectPath() {
    Load Side Navigation
 =========================== */
 function loadSideNav(pathPrefix, isSubfolder) {
-  fetch(pathPrefix + "components/sidenav.html")
+  // ✅ Use BASE for root-level components
+  fetch(`${BASE}/components/sidenav.html`)
     .then(res => res.text())
     .then(html => {
       document.body.insertAdjacentHTML("afterbegin", html);
@@ -149,11 +155,11 @@ function setupSearch(sidenav) {
 }
 
 /* ===========================
-   Scrape tournamnents
+   Load tournaments
 =========================== */
 
 async function loadTournaments() {
-  const res = await fetch("/around-the-world-in-80-games/data/tournaments.json");
+  const res = await fetch(`${BASE}/data/tournaments.json`);
   const data = await res.json();
 
   const container = document.getElementById("tournaments");
@@ -166,10 +172,9 @@ async function loadTournaments() {
       div.innerHTML = `
         <h3>Tournament ${t.id} — Completed</h3>
         <table>
-          ${t.standings
+          ${t.top5
             .map(
-              row =>
-                `<tr>${row.map(col => `<td>${col}</td>`).join("")}</tr>`
+              p => `<tr><td>${p.rank}</td><td>${p.name}</td></tr>`
             )
             .join("")}
         </table>
@@ -191,4 +196,3 @@ async function loadTournaments() {
 }
 
 loadTournaments();
-
