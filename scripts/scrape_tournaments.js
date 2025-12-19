@@ -28,7 +28,7 @@ if (isCompleted) {
   ];
 
   // Change 5 → 4 if you want top 4
-  const top5 = playerBlocks.slice(0, 4).map(block => {
+  const top4 = playerBlocks.slice(0, 4).map(block => {
     const nameEl = block.querySelector(".tournaments-results-players__name");
     const rankEl = block.querySelector(".tournaments-results-players__rank");
 
