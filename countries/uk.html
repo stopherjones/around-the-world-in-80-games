@@ -29,7 +29,16 @@
     <section>
       <h2>Mr Jack</h2>
       <div class="placeholder">
-        <p>Mr Jack results!</p>
+        <p>Mr Jack results</p>
+        <div id="country-tournaments"></div>
+      </div>
+    </section>
+  </main>
+
+      <section>
+      <h2>Next Station: London</h2>
+      <div class="placeholder">
+        <p>Next Station: London results</p>
         <div id="country-tournaments"></div>
       </div>
     </section>
@@ -45,8 +54,8 @@
   <!-- ✅ Country-specific logic AFTER script.js -->
   <script>
     // ✅ Which tournaments belong to this country
-    const COUNTRY_TOURNAMENT_IDS = [354697];
-
+    const COUNTRY_TOURNAMENT_IDS = [354697, 354698]; // Example IDs for Mr Jack and Next Station: London
+    
     async function loadCountryTournaments() {
       // ✅ Use BASE from script.js
       const res = await fetch(`${BASE}/data/tournaments.json`);

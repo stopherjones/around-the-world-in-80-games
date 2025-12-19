@@ -4,7 +4,8 @@ const fs = require("fs");
 
 // ✅ Add all tournament IDs you want to track
 const TOURNAMENT_IDS = [
-  354697, // UK example
+  354697,
+  354698,
   // Add more IDs here
 ];
 
