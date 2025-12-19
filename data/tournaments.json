@@ -1,16 +1,7 @@
 {
   "354697": {
     "id": 354697,
-    "status": "completed",
-    "standings": [
-      ["1", "Alice", "42 pts"],
-      ["2", "Bob", "39 pts"],
-      ["3", "Charlie", "37 pts"]
-    ]
-  },
-  "488444": {
-    "id": 488444,
     "status": "ongoing",
-    "round": "Round 3"
+    "round": null
   }
 }
