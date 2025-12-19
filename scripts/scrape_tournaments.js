@@ -16,30 +16,52 @@ async function scrapeTournament(id) {
   const dom = new JSDOM(html);
   const doc = dom.window.document;
 
-  // ✅ Detect completed tournaments
-  const finishedBanner = doc.querySelector(".tournament_finished");
-  const resultsTable = doc.querySelector(".tournament_results");
+  const pageText = doc.body.textContent.toLowerCase();
 
-  if (finishedBanner || resultsTable) {
-    const rows = [...doc.querySelectorAll(".tournament_results tr")].map(tr =>
-      [...tr.querySelectorAll("td")].map(td => td.textContent.trim())
+  const isCompleted = pageText.includes("this tournament has ended");
+  const isOngoing = pageText.includes("this tournament is in progress");
+
+  // ✅ Completed tournament
+  if (isCompleted) {
+    // Find the "Tournament results" table by text content
+    const resultsTable = [...doc.querySelectorAll("table")].find(table =>
+      table.textContent.toLowerCase().includes("tournament results")
     );
+
+    let top5 = [];
+
+    if (resultsTable) {
+      const rows = [...resultsTable.querySelectorAll("tr")];
+
+      // Skip header row, take next 5 rows
+      top5 = rows.slice(1, 6).map(tr =>
+        [...tr.querySelectorAll("td, th")].map(td => td.textContent.trim())
+      );
+    }
 
     return {
       id,
       status: "completed",
-      standings: rows
+      top5
     };
   }
 
-  // ✅ Detect ongoing tournaments
-  const roundEl = doc.querySelector(".tournament_round");
-  const round = roundEl ? roundEl.textContent.trim() : null;
+  // ✅ Ongoing tournament
+  if (isOngoing) {
+    const roundEl = doc.querySelector(".tournament_round");
+    const round = roundEl ? roundEl.textContent.trim() : null;
 
+    return {
+      id,
+      status: "ongoing",
+      round
+    };
+  }
+
+  // ✅ Fallback (rare)
   return {
     id,
-    status: "ongoing",
-    round
+    status: "unknown"
   };
 }
 
