@@ -147,3 +147,48 @@ function setupSearch(sidenav) {
     searchInput.dispatchEvent(new Event("input"));
   });
 }
+
+/* ===========================
+   Scrape tournamnents
+=========================== */
+
+async function loadTournaments() {
+  const res = await fetch("data/tournaments.json");
+  const data = await res.json();
+
+  const container = document.getElementById("tournaments");
+
+  Object.values(data).forEach(t => {
+    const div = document.createElement("div");
+    div.className = "tournament";
+
+    if (t.status === "completed") {
+      div.innerHTML = `
+        <h3>Tournament ${t.id} — Completed</h3>
+        <table>
+          ${t.standings
+            .map(
+              row =>
+                `<tr>${row.map(col => `<td>${col}</td>`).join("")}</tr>`
+            )
+            .join("")}
+        </table>
+      `;
+    } else if (t.status === "ongoing") {
+      div.innerHTML = `
+        <h3>Tournament ${t.id} — Ongoing</h3>
+        <p>Round: ${t.round || "Unknown"}</p>
+      `;
+    } else {
+      div.innerHTML = `
+        <h3>Tournament ${t.id} — Error</h3>
+        <p>${t.error}</p>
+      `;
+    }
+
+    container.appendChild(div);
+  });
+}
+
+loadTournaments();
+
