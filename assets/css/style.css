@@ -50,20 +50,18 @@ header h1 {
 header p {
   margin-top: 0.75rem;
   font-size: 1.1rem;
-  opacity: 0.9;
 }
 
 .country-nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: 950px; /* or whatever matches your layout */
   margin: 0 auto;
   font-size: 0.9rem;
-  opacity: 0.85;
   gap: 2rem;
-  margin-top: 0.5rem;
+  padding: 2.5rem 1.5rem 1rem; /* 2.5rem top padding, 0rem bottom padding */
 }
-
 
 .country-nav a {
   color: inherit;   /* ← matches the header text colour */
@@ -77,7 +75,6 @@ header p {
 .placeholder.country-nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
   font-size: 0.9rem;
   background: #A06A4E; 
   border: none;
