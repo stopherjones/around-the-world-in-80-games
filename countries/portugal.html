@@ -32,7 +32,7 @@
 <section>
   <h2>Azul: Summer Pavilion results</h2>
   <div class="placeholder">
-    <div id="azul-tournaments"></div>
+    <div id="azul-summer-pavilion-tournaments"></div>
   </div>
 </section>
 
@@ -103,8 +103,7 @@
         `;
       } else if (t.status === "ongoing") {
         div.innerHTML = `
-          <h3>Tournament ${t.id} — Ongoing</h3>
-          <p>Round: ${t.round || "Unknown"}</p>
+          <h3>Tournament ongoing</h3>
           <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
         `;
       }
