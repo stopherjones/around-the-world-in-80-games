@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Greece · Around the World in 80 Games</title>
+  <title>Mallorca · Around the World in 80 Games</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body>
 
   <header>
-    <h1>Greece</h1>
+    <h1>Mallorca</h1>
     <div class="country-nav">
-    <a href="russia.html" class="prev">← Russia</a>
-    <a href="italy.html" class="next">Italy →</a>
+    <a href="france.html" class="prev">← France</a>
+    <a href="mallorca.html" class="next">Mallorca →</a>
     </div>
   </header>
 
@@ -22,24 +22,16 @@
     <section>
       <h2>Overview</h2>
       <div class="placeholder">
-      <p>Welcome to Greece, a land steeped in history, mythology, and breathtaking beauty, known as the cradle of Western civilization and the birthplace of democracy and the Olympic Games.</p>
-      <p>From the iconic whitewashed buildings of Santorini to the majestic ruins of the Acropolis in Athens, Greece has inspired art, philosophy, and culture for millennia - and, of course, our next two games:</p>
-      <p>Santorini is something of a modern classic - a 2-player abstract with a twist. Channel the powers of Gaea, Zeus or even Chaos to build and climb to the top of the city, while manoeuvring to block your opponent.</p>
-      <p>In Akropolis you’ll quarry for stone, while drafting and building housing, temples, markets, gardens and barracks, to grow your city and ensure it triumphs over your rivals.</p>
-           </div>
+      <p>Mallorca is the largest of Spain’s Balearic Islands, a popular tourist destination for Europeans seeking year-round sunshine where rugged mountains meet turquoise seas, fishing villages and beautiful coves, cliffs and beaches.</p>
+<p>Mallorca is also steeped in agricultural history; its dry Mediterranean climate, with long hot summers and mild winters, makes it ideal for hardy crops like olives, almonds and figs, grown in traditional farmhouses known as Fincas.</p>
+<p>It is in these Fincas where we make our next stop, growing a range of produce on a windmill-shaped rondelles to fulfill the ever-changing demands of the produce markets around the island. </p>
+</div>
     </section>
 
 <section>
-  <h2>Santorini results</h2>
+  <h2>Fincas results</h2>
   <div class="placeholder">
-    <div id="santorini-tournaments"></div>
-  </div>
-</section>
-
-<section>
-  <h2>Akropolis results</h2>
-  <div class="placeholder">
-    <div id="akropolis-tournaments"></div>
+    <div id="finca-tournaments"></div>
   </div>
 </section>
 
@@ -64,8 +56,7 @@
 
   // ✅ Map tournament IDs to their section containers
   const TOURNAMENT_SECTIONS = {
-    387302: "santorini-tournaments",
-    387304: "akropolis-tournaments",
+    427916: "finca-tournaments",
   };
 
   async function loadCountryTournaments() {

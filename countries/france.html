@@ -1,31 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>United Kingdom · Around the World in 80 Games</title>
+  <title>France · Around the World in 80 Games</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
+
 <body>
 
   <header>
-    <h1>United Kingdom</h1>
-    <p>Games from England, Scotland, Wales, and Northern Ireland</p>
+    <h1>France</h1>
+    <div class="country-nav">
+    <a href="switzerland.html" class="prev">← Switzerland</a>
+    <a href="mallorca.html" class="next">Mallorca →</a>
+    </div>
   </header>
 
   <main>
     <section>
       <h2>Overview</h2>
       <div class="placeholder">
-        <p>Placeholder for UK games and history.</p>
-      </div>
+      <p>If Germany was the spiritual home of modern board games, then our next destination, France, is very much the home of digital board games, being where BGA is based, and the thematic location for many, many modern games.</p>
+      <p>The four games we will play in France aim to cover much of its beautiful countryside, historic towns and cities, and traditional culture and cuisine.</p>
+      <p>In Fromage, we’ll step into the world of artisanal cheesemaking, crafting France’s most beloved delicacies.</p>
+      <p>Carcassonne invites us to build medieval landscapes of fortified cities, abbeys, and winding roads.</p>
+      <p>Castles of Burgundy takes us to the fertile vineyards and estates of the Loire Valley, where players develop their lands into prosperous domains.</p>
+      <p>And in Oriflamme, we enter the cutthroat world of French noble houses, scheming for influence in a game of bluff and betrayal. Bon chance !</p>
+</div>
     </section>
+
+<section>
+  <h2>Fromage results</h2>
+  <div class="placeholder">
+    <div id="fromage-tournaments"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Carcassonne results</h2>
+  <div class="placeholder">
+    <div id="carcassonne-tournaments"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Castles of Burgundy results</h2>
+  <div class="placeholder">
+    <div id="castles-of-burgundy-tournaments"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Oriflamme results</h2>
+  <div class="placeholder">
+    <div id="oriflamme-tournaments"></div>
+  </div>
+</section>
   </main>
 
   <footer>
     <p>© 2025 Around the World in 80 Games</p>
   </footer>
 
+  <!-- ✅ Load global script FIRST so BASE + sidenav are ready -->
   <script src="../assets/js/script.js"></script>
+
+  <!-- ✅ Country-specific logic AFTER script.js -->
+  <script>
+
+    const TROPHIES = {
+  "1st": "🥇",
+  "2nd": "🥈",
+  "3rd": "🥉"
+};
+
+
+  // ✅ Map tournament IDs to their section containers
+  const TOURNAMENT_SECTIONS = {
+    420787: "fromage-tournaments",
+    420786: "carcassonne-tournaments",
+    420929: "castles-of-burgundy-tournaments",
+    420784: "oriflamme-tournaments",
+  };
+
+  async function loadCountryTournaments() {
+    const res = await fetch(`${BASE}/data/tournaments.json`);
+    const data = await res.json();
+
+    Object.entries(TOURNAMENT_SECTIONS).forEach(([id, containerId]) => {
+      const t = data[id];
+      const container = document.getElementById(containerId);
+
+      if (!t) {
+        container.innerHTML = "<p>No results found.</p>";
+        return;
+      }
+
+      const div = document.createElement("div");
+      div.className = "tournament-card";
+
+      if (t.status === "completed") {
+        const results = t.top4 || t.top5 || [];
+
+       const resultsTable = results
+  .map(player => {
+    const trophy = TROPHIES[player.rank] || "";
+    return `
+      <tr>
+        <td>${trophy} ${player.rank}</td>
+        <td>${player.name}</td>
+      </tr>
+    `;
+  })
+  .join("");
+
+
+        div.innerHTML = `
+          <table class="standings-table">
+            <tr><th>Rank</th><th>Player</th></tr>
+            ${resultsTable}
+          </table>
+          <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
+        `;
+      } else if (t.status === "ongoing") {
+        div.innerHTML = `
+          <h3>Tournament ${t.id} — Ongoing</h3>
+          <p>Round: ${t.round || "Unknown"}</p>
+          <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
+        `;
+      }
+
+      container.appendChild(div);
+    });
+  }
+
+  loadCountryTournaments();
+</script>
+
 </body>
 </html>

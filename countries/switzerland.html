@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Greece · Around the World in 80 Games</title>
+  <title>Switzerland · Around the World in 80 Games</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
 <body>
 
   <header>
-    <h1>Greece</h1>
+    <h1>Switzerland</h1>
     <div class="country-nav">
-    <a href="russia.html" class="prev">← Russia</a>
-    <a href="italy.html" class="next">Italy →</a>
+    <a href="italy.html" class="prev">← Italy</a>
+    <a href="france.html" class="next">France →</a>
     </div>
   </header>
 
@@ -22,24 +22,16 @@
     <section>
       <h2>Overview</h2>
       <div class="placeholder">
-      <p>Welcome to Greece, a land steeped in history, mythology, and breathtaking beauty, known as the cradle of Western civilization and the birthplace of democracy and the Olympic Games.</p>
-      <p>From the iconic whitewashed buildings of Santorini to the majestic ruins of the Acropolis in Athens, Greece has inspired art, philosophy, and culture for millennia - and, of course, our next two games:</p>
-      <p>Santorini is something of a modern classic - a 2-player abstract with a twist. Channel the powers of Gaea, Zeus or even Chaos to build and climb to the top of the city, while manoeuvring to block your opponent.</p>
-      <p>In Akropolis you’ll quarry for stone, while drafting and building housing, temples, markets, gardens and barracks, to grow your city and ensure it triumphs over your rivals.</p>
-           </div>
+      <p>Next we travel north, climbing the Alps and the world-famous Matterhorn mountain that straddles the border and into Switzerland - a land of majestic Alpine peaks, pristine lakes, and charming villages. Known for its neutrality, precision engineering, and world-famous chocolate, Switzerland is a country that seamlessly blends natural beauty with cultural richness.</p>
+      <p>Switzerland is also home to one of the most efficient and scenic railway systems in the world. Its trains wind through mountain passes, cross dramatic viaducts, and connect picturesque towns, making it a paradise for travelers and train enthusiasts alike.</p>
+      <p>That’s why the Swiss expansion is the perfect choice to showcase our next game, Ticket to Ride - the 2004 Spiel des Jahres winner that needs little introduction. Just watch out for the tight routes, mountain passes and multi-destination objectives in this expansion at the heart of Europe.</p>
+      </div>
     </section>
 
 <section>
-  <h2>Santorini results</h2>
+  <h2>Ticket to Ride results</h2>
   <div class="placeholder">
-    <div id="santorini-tournaments"></div>
-  </div>
-</section>
-
-<section>
-  <h2>Akropolis results</h2>
-  <div class="placeholder">
-    <div id="akropolis-tournaments"></div>
+    <div id="ticket-to-ride-tournaments"></div>
   </div>
 </section>
 
@@ -64,8 +56,7 @@
 
   // ✅ Map tournament IDs to their section containers
   const TOURNAMENT_SECTIONS = {
-    387302: "santorini-tournaments",
-    387304: "akropolis-tournaments",
+    410031: "ticket-to-ride-tournaments",
   };
 
   async function loadCountryTournaments() {
