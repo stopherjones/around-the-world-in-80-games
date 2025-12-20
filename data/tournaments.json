@@ -153,28 +153,6 @@
       }
     ]
   },
-  "374197": {
-    "id": 374197,
-    "status": "completed",
-    "top4": [
-      {
-        "rank": "1st",
-        "name": "TacCOIG"
-      },
-      {
-        "rank": "2nd",
-        "name": "Kurorac"
-      },
-      {
-        "rank": "3rd",
-        "name": "Bleedingriver"
-      },
-      {
-        "rank": "4th",
-        "name": "Cheery Dog"
-      }
-    ]
-  },
   "378251": {
     "id": 378251,
     "status": "completed",
@@ -282,28 +260,6 @@
       {
         "rank": "3rd",
         "name": "TacCOIG"
-      }
-    ]
-  },
-  "404124": {
-    "id": 404124,
-    "status": "completed",
-    "top4": [
-      {
-        "rank": "-",
-        "name": "Zozoken"
-      },
-      {
-        "rank": "-",
-        "name": "stopherjones"
-      },
-      {
-        "rank": "-",
-        "name": "TacCOIG"
-      },
-      {
-        "rank": "-",
-        "name": "Arjo14"
       }
     ]
   },
@@ -627,8 +583,25 @@
   },
   "488602": {
     "id": 488602,
-    "status": "ongoing",
-    "round": null
+    "status": "completed",
+    "top4": [
+      {
+        "rank": "1st",
+        "name": "Castz"
+      },
+      {
+        "rank": "2nd",
+        "name": "Niall"
+      },
+      {
+        "rank": "3rd",
+        "name": "Cheery Dog"
+      },
+      {
+        "rank": "4th",
+        "name": "stopherjones"
+      }
+    ]
   },
   "499404": {
     "id": 499404,
