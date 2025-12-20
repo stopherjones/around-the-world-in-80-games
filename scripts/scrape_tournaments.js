@@ -36,6 +36,7 @@ const TOURNAMENT_IDS = [
   499404,  // Sobek 
   499408,  // Luxor
   499409,  // Imhotep
+  499398,  // Nile
   // Add more IDs here
 ];
 

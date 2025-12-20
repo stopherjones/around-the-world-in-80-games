@@ -47,26 +47,29 @@
 
   <!-- ✅ Country-specific logic AFTER script.js -->
   <script>
+  const COUNTRY_NAME = "Portugal"; // ✅ change per country
 
-    const TROPHIES = {
-  "1st": "🥇",
-  "2nd": "🥈",
-  "3rd": "🥉"
-};
-
-
-  // ✅ Map tournament IDs to their section containers
-  const TOURNAMENT_SECTIONS = {
-    427919: "azul-tournaments",
+  const TROPHIES = {
+    "1st": "🥇",
+    "2nd": "🥈",
+    "3rd": "🥉"
   };
 
   async function loadCountryTournaments() {
-    const res = await fetch(`${BASE}/data/tournaments.json`);
-    const data = await res.json();
+    // ✅ Load tournament data + metadata
+    const tournaments = await fetch(`${BASE}/data/tournaments.json`).then(r => r.json());
+    const meta = await fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json());
 
-    Object.entries(TOURNAMENT_SECTIONS).forEach(([id, containerId]) => {
-      const t = data[id];
-      const container = document.getElementById(containerId);
+    // ✅ Filter metadata to only this country’s tournaments
+    const countryTournaments = Object.entries(meta)
+      .filter(([id, info]) => info.country === COUNTRY_NAME);
+
+    // ✅ Render each tournament
+    countryTournaments.forEach(([id, info]) => {
+      const t = tournaments[id];
+      const container = document.getElementById(info.section);
+
+      if (!container) return; // safety check
 
       if (!t) {
         container.innerHTML = "<p>No results found.</p>";
@@ -79,18 +82,17 @@
       if (t.status === "completed") {
         const results = t.top4 || t.top5 || [];
 
-       const resultsTable = results
-  .map(player => {
-    const trophy = TROPHIES[player.rank] || "";
-    return `
-      <tr>
-        <td>${trophy} ${player.rank}</td>
-        <td>${player.name}</td>
-      </tr>
-    `;
-  })
-  .join("");
-
+        const resultsTable = results
+          .map(player => {
+            const trophy = TROPHIES[player.rank] || "";
+            return `
+              <tr>
+                <td>${trophy} ${player.rank}</td>
+                <td>${player.name}</td>
+              </tr>
+            `;
+          })
+          .join("");
 
         div.innerHTML = `
           <table class="standings-table">

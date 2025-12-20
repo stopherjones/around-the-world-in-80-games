@@ -34,11 +34,12 @@
     </section>
 
         <section>
-      <h2>Ongoing locations / games</h2>
-      <div class="placeholder">
-        <p><a href="countries/uk.html">United Kingdom</a></p>
-      </div>
-    </section>
+  <h2>Ongoing locations / games</h2>
+  <div class="placeholder" id="ongoing-list">
+    <!-- JS will populate this -->
+  </div>
+</section>
+
     
   </main>
 
@@ -48,5 +49,48 @@
 
   <!-- Script loads sidenav from /components -->
   <script src="assets/js/script.js"></script>
+  <script>
+async function loadOngoing() {
+  const tournaments = await fetch(`${BASE}/data/tournaments.json`).then(r => r.json());
+  const meta = await fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json());
+
+  const container = document.getElementById("ongoing-list");
+
+  // ✅ Find all ongoing tournaments
+  const ongoing = Object.entries(tournaments)
+    .filter(([id, t]) => t.status === "ongoing");
+
+  if (ongoing.length === 0) {
+    container.innerHTML = "<p>No tournaments currently ongoing.</p>";
+    return;
+  }
+
+  // ✅ Render each ongoing tournament
+  ongoing.forEach(([id, t]) => {
+    const info = meta[id];
+    if (!info) return;
+
+    const countrySlug = info.country.toLowerCase().replace(/\s+/g, "");
+    const countryUrl = `countries/${countrySlug}.html`;
+
+    const div = document.createElement("div");
+    div.className = "ongoing-item";
+
+    div.innerHTML = `
+      <p>
+        <a href="${countryUrl}">
+          ${info.country} - ${info.game}
+        </a>
+
+      </p>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+loadOngoing();
+</script>
+
 </body>
 </html>
