@@ -10,16 +10,21 @@
 
   <header>
     <h1>Games list</h1>
-    <p>All the games in the event, in order of appearance (placeholder)</p>
+    <div class="country-nav">
+        <span></span>
+  <a href="countries/unitedkingdom.html" class="next">First stop: United Kingdom →</a>
+
+</div>
   </header>
 
   <main>
-    <div class="map-placeholder">
-      <p>Placeholder for the list</p>
-      <ul>
-        <li><a href="countries/uk.html">United Kingdom</a></li>
-      </ul>
-    </div>
+<section>
+  <h2>All Games</h2>
+  <div class="placeholder" id="games-list">
+    <!-- JS will populate this -->
+  </div>
+</section>
+
   </main>
 
   <footer>
@@ -27,5 +32,40 @@
   </footer>
 
   <script src="assets/js/script.js"></script>
+  <script>
+async function loadAllGames() {
+  const meta = await fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json());
+  const tournaments = await fetch(`${BASE}/data/tournaments.json`).then(r => r.json());
+  const container = document.getElementById("games-list");
+
+  // ✅ Use JSON order exactly as written
+  const entries = Object.entries(meta);
+
+  entries.forEach(([id, info]) => {
+    const t = tournaments[id];
+    if (!t) return;
+
+    const countrySlug = info.country.toLowerCase().replace(/\s+/g, "");
+    const countryUrl = `countries/${countrySlug}.html`;
+    const bgaUrl = `https://boardgamearena.com/tournament?id=${id}`;
+
+    const div = document.createElement("div");
+    div.className = "game-item";
+
+    div.innerHTML = `
+      <p>
+        <a href="${countryUrl}">${info.country}</a>
+        &nbsp;–&nbsp;
+        <a href="${bgaUrl}" target="_blank">${info.game}</a>
+      </p>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+loadAllGames();
+</script>
+
 </body>
 </html>

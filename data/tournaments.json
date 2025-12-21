@@ -463,8 +463,8 @@
   },
   "427919": {
     "id": 427919,
-    "status": "ongoing",
-    "round": null
+    "status": "ongoing"
+    
   },
   "439073": {
     "id": 439073,
@@ -512,8 +512,8 @@
   },
   "461495": {
     "id": 461495,
-    "status": "ongoing",
-    "round": null
+    "status": "ongoing"
+    
   },
   "461517": {
     "id": 461517,
@@ -605,17 +605,17 @@
   },
   "499404": {
     "id": 499404,
-    "status": "ongoing",
-    "round": null
+    "status": "ongoing"
+    
   },
   "499408": {
     "id": 499408,
-    "status": "ongoing",
-    "round": null
+    "status": "ongoing"
+    
   },
   "499409": {
     "id": 499409,
-    "status": "ongoing",
-    "round": null
+    "status": "ongoing"
+    
   }
 }
