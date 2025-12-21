@@ -33,33 +33,39 @@
 
   <script src="assets/js/script.js"></script>
   
-  <script>
+<script>
 async function loadGames() {
-  // ✅ Use the global cached loader from script.js
   const { tournaments, meta } = await loadData();
-
   const container = document.getElementById("games-list");
 
-  // ✅ Use JSON order exactly as written in tournament-meta.json
+  // ✅ Preserve order from tournament-meta.json
   const entries = Object.entries(meta);
 
   entries.forEach(([id, info]) => {
     const t = tournaments[id];
-    if (!t) return;
+    const hasLiveTournament = t && t.status;
 
-    const countrySlug = info.country.toLowerCase().replace(/\s+/g, "");
-    const countryUrl = `countries/${countrySlug}.html`;
-    const bgaUrl = `https://boardgamearena.com/tournament?id=${id}`;
+    const country = info.country || "Unknown Country";
+    const game = info.game || "Unknown Game";
+
+    // ✅ Only link if tournament exists
+    const countrySlug = info.country
+      ? info.country.toLowerCase().replace(/\s+/g, "")
+      : null;
+
+    const gameHtml = hasLiveTournament
+      ? `<a href="https://boardgamearena.com/tournament?id=${id}" target="_blank">${game}</a>`
+      : game;
+
+    const countryHtml = hasLiveTournament && countrySlug
+      ? `<a href="countries/${countrySlug}.html">${country}</a>`
+      : country;
 
     const div = document.createElement("div");
     div.className = "game-item";
 
     div.innerHTML = `
-      <p>
-        <a href="${countryUrl}">${info.country}</a>
-        &nbsp;–&nbsp;
-        <a href="${bgaUrl}" target="_blank">${info.game}</a>
-      </p>
+      <p>${gameHtml} &nbsp;–&nbsp; ${countryHtml}</p>
     `;
 
     container.appendChild(div);
@@ -68,6 +74,8 @@ async function loadGames() {
 
 loadGames();
 </script>
+
+
 
 </body>
 </html>

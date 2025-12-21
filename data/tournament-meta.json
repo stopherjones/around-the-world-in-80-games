@@ -163,5 +163,10 @@
     "country": "Egypt",
     "game": "Nile",
     "section": "nile-tournaments"
+},
+    "000000": {
+    "country": "Saudi Arabia",
+    "game": "Neom",
+    "section": "neom-tournaments"
 }
 }

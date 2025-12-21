@@ -306,3 +306,22 @@ footer {
   border: 1px solid #ccc;
   padding: 4px 8px;
 }
+
+/* Two‑column layout for the games list */
+#games-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 1.5rem;
+}
+
+/* Switch to two columns on wider screens */
+@media (min-width: 700px) {
+  #games-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Optional: make items look tidy */
+.game-item p {
+  margin: 0.25rem 0;
+}
