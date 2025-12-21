@@ -52,76 +52,65 @@
   <!-- ✅ Load global script FIRST so BASE + sidenav are ready -->
   <script src="../assets/js/script.js"></script>
 
-  <!-- ✅ Country-specific logic AFTER script.js -->
-  <script>
-  const COUNTRY_NAME = "United Kingdom"; // ✅ change per country
+ <script>
+const COUNTRY_NAME = "United Kingdom"; // ✅ change per country
 
-  const TROPHIES = {
-    "1st": "🥇",
-    "2nd": "🥈",
-    "3rd": "🥉"
-  };
+async function loadCountryTournaments() {
+  // ✅ Use cached/preloaded data from script.js
+  const { tournaments, meta } = await loadData();
 
-  async function loadCountryTournaments() {
-    // ✅ Load tournament data + metadata
-    const tournaments = await fetch(`${BASE}/data/tournaments.json`).then(r => r.json());
-    const meta = await fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json());
+  // ✅ Filter metadata to only this country’s tournaments
+  const countryEntries = Object.entries(meta)
+    .filter(([id, info]) => info.country === COUNTRY_NAME);
 
-    // ✅ Filter metadata to only this country’s tournaments
-    const countryTournaments = Object.entries(meta)
-      .filter(([id, info]) => info.country === COUNTRY_NAME);
+  countryEntries.forEach(([id, info]) => {
+    const t = tournaments[id];
+    const container = document.getElementById(info.section);
 
-    // ✅ Render each tournament
-    countryTournaments.forEach(([id, info]) => {
-      const t = tournaments[id];
-      const container = document.getElementById(info.section);
+    if (!container) return;
 
-      if (!container) return; // safety check
+    if (!t) {
+      container.innerHTML = "<p>No results found.</p>";
+      return;
+    }
 
-      if (!t) {
-        container.innerHTML = "<p>No results found.</p>";
-        return;
-      }
+    const div = document.createElement("div");
+    div.className = "tournament-card";
 
-      const div = document.createElement("div");
-      div.className = "tournament-card";
+    if (t.status === "completed") {
+      const results = t.top4 || [];
 
-      if (t.status === "completed") {
-        const results = t.top4 || t.top5 || [];
+      const resultsTable = results
+        .map(player => `
+          <tr>
+            <td>${player.rank}</td>
+            <td>${player.name}</td>
+          </tr>
+        `)
+        .join("");
 
-        const resultsTable = results
-          .map(player => {
-            const trophy = TROPHIES[player.rank] || "";
-            return `
-              <tr>
-                <td>${trophy} ${player.rank}</td>
-                <td>${player.name}</td>
-              </tr>
-            `;
-          })
-          .join("");
+      div.innerHTML = `
+        <table class="standings-table">
+          <tr><th>Rank</th><th>Player</th></tr>
+          ${resultsTable}
+        </table>
+        <p><a href="https://boardgamearena.com/tournament?id=${id}" target="_blank">View on BGA</a></p>
+      `;
+    }
 
-        div.innerHTML = `
-          <table class="standings-table">
-            <tr><th>Rank</th><th>Player</th></tr>
-            ${resultsTable}
-          </table>
-          <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
-        `;
-      } else if (t.status === "ongoing") {
-        div.innerHTML = `
-          <h3>Tournament ongoing</h3>
-          <p><a href="https://boardgamearena.com/tournament?id=${t.id}" target="_blank">View on BGA</a></p>
-        `;
-      }
+    if (t.status === "ongoing") {
+      div.innerHTML = `
+        <h3>Tournament ${id} — Ongoing</h3>
+        <p><a href="https://boardgamearena.com/tournament?id=${id}" target="_blank">View on BGA</a></p>
+      `;
+    }
 
-      container.appendChild(div);
-    });
-  }
+    container.appendChild(div);
+  });
+}
 
-  loadCountryTournaments();
+loadCountryTournaments();
 </script>
-
 
 </body>
 </html>

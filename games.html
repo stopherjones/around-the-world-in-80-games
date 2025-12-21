@@ -32,13 +32,15 @@
   </footer>
 
   <script src="assets/js/script.js"></script>
+  
   <script>
-async function loadAllGames() {
-  const meta = await fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json());
-  const tournaments = await fetch(`${BASE}/data/tournaments.json`).then(r => r.json());
+async function loadGames() {
+  // ✅ Use the global cached loader from script.js
+  const { tournaments, meta } = await loadData();
+
   const container = document.getElementById("games-list");
 
-  // ✅ Use JSON order exactly as written
+  // ✅ Use JSON order exactly as written in tournament-meta.json
   const entries = Object.entries(meta);
 
   entries.forEach(([id, info]) => {
@@ -64,7 +66,7 @@ async function loadAllGames() {
   });
 }
 
-loadAllGames();
+loadGames();
 </script>
 
 </body>
