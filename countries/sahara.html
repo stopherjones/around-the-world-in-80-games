@@ -64,9 +64,8 @@
   };
 
   async function loadCountryTournaments() {
-    // ✅ Load tournament data + metadata
-    const tournaments = await fetch(`${BASE}/data/tournaments.json`).then(r => r.json());
-    const meta = await fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json());
+    // ✅ Load from cached/preloaded data instead of fetching
+    const { tournaments, meta } = await loadData();
 
     // ✅ Filter metadata to only this country’s tournaments
     const countryTournaments = Object.entries(meta)
