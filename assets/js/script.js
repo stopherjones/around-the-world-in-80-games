@@ -8,6 +8,52 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSideNav(pathPrefix, isSubfolder);
 });
 
+// ✅ Global cached data
+window.TOURNAMENT_DATA = null;
+window.META_DATA = null;
+
+async function loadData() {
+  const CACHE_KEY = "tournamentCache";
+  const CACHE_TIME = 1000 * 60 * 10; // 10 minutes
+
+  // ✅ Check cache
+  const cached = localStorage.getItem(CACHE_KEY);
+  if (cached) {
+    const parsed = JSON.parse(cached);
+    const age = Date.now() - parsed.timestamp;
+
+    if (age < CACHE_TIME) {
+      window.TOURNAMENT_DATA = parsed.tournaments;
+      window.META_DATA = parsed.meta;
+      return parsed;
+    }
+  }
+
+  // ✅ Fetch fresh data
+  const [tournaments, meta] = await Promise.all([
+    fetch(`${BASE}/data/tournaments.json`).then(r => r.json()),
+    fetch(`${BASE}/data/tournament-meta.json`).then(r => r.json())
+  ]);
+
+  const payload = {
+    timestamp: Date.now(),
+    tournaments,
+    meta
+  };
+
+  // ✅ Save to cache
+  localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+
+  window.TOURNAMENT_DATA = tournaments;
+  window.META_DATA = meta;
+
+  return payload;
+}
+
+// ✅ Preload immediately
+loadData();
+
+
 /* ===========================
    Path Detection
 =========================== */
